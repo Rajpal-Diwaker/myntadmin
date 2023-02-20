@@ -1,0 +1,22 @@
+.editicon{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #333;
+    font-size: 16px;
+}
+.pos_rel{
+    position: relative;
+}
+.modal-dialog-c {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+}
+
+.modal-content-c {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}

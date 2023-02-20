@@ -1,0 +1,38 @@
+.card-stats .card-category{
+    font-size:34px;
+    font-weight:700;
+}
+.card-stats .card-title{
+    font-size:15px;
+    font-weight:400;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+table  {
+  width : 100%
+}
+
+th, td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

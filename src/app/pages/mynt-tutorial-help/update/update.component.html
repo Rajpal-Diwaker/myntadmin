@@ -1,0 +1,45 @@
+<div class="col-md-12">
+  <div class="card card-user">
+    <div class="card-body">
+      <form novalidate="" class="ng-untouched ng-pristine ng-valid"
+        (ngSubmit)="onSubmit(addForm.value)" [formGroup]="addForm">
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <label>&nbsp;</label>
+            <div class="form-control">
+              <label>Upload Video</label>
+              <input type="file"
+              accept="video/*"
+              (change)="changeFile($event)"/>
+            </div>
+            <div *ngIf="isFileSelected" style="color: red;">
+              Please select file to upload.
+            </div>
+          </div>
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>User Type</label>
+              <select class="form-control" formControlName="userType">
+                <option selected value="USER">USER</option>
+                <option value="PRO">PROFESSIONAL</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 pr-1">
+            <div class="form-group">
+              <label>Status</label>
+              <select class="form-control" formControlName="status">
+                <option selected value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ml-auto mr-auto">
+            <button class="btn btn-primary btn-round" type="submit">{{editForm?'Update':'Add'}}</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

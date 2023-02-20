@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="custom-card-form">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="text-nowrap">Review and Rating</h5>
+        <div class="tabsdiv">
+          <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
+            <li class="active"><a href="javascript:void(0)" (click)="onFilter('T')">Today</a></li>
+            <li><a  href="javascript:void(0)" (click)="onFilter('W')">This Week</a></li>
+            <li><a  href="javascript:void(0)" (click)="onFilter('M')">This Month</a></li>
+            <li><a  href="javascript:void(0)" (click)="onFilter('Y')">This Year</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 mar_top">
+
+    <accordion>
+      <accordion-group *ngFor="let feedback of feedbackList;let i =index;"  #myGroup>
+        <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+          <div class="maindiv">
+            <div class="userimage">
+              <img [src]="feedback.image?feedback.image:'/assets/img/default-avatar.png'">
+            </div>
+            <div class="userinfo">
+              <h4>{{feedback.firstName}} {{feedback.lastName}} | Rating {{feedback.rating}}</h4><span></span>
+            </div>
+          </div>
+          <i class="fa arrupdown" [ngClass]="{'fa-chevron-up': myGroup?.isOpen, 'fa-chevron-down': !myGroup?.isOpen}"></i>
+        </button>
+        <div class="answerdiv_Wrap" *ngFor="let review of feedback.review">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="feedbackdtls_wrap">
+                <div class="firstdiv">
+                  <div class="userimage">
+                    <img [src]="review.userId.image?review.userId.image:'/assets/img/default-avatar.png'">
+                  </div>
+                  <div class="username">
+                    <h5>{{review.userId.firstName}} {{review.userId.lastName}}</h5>
+                  </div>
+                </div>
+                <div class="seconddiv">
+                  <div class="dtls">
+                    <div class="secndinfo">Service</div>
+                    <p>{{ review.bookingId.serviceId}}</p>
+                  </div>
+                  <div class="dtls">
+                    <div class="secndinfo">Price</div>
+                    <p>€{{review.bookingId.totalFee || 0}}</p>
+                  </div>
+                  <div class="dtls">
+                    <div class="secndinfo">Time Slot</div>
+                    <p>{{ review.bookingId.timeSlot}}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>

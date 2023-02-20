@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="custom-card-form boxmakdiv">
+            <div class="detail-pro">
+                <div class="d-flex">
+                    <div class="img-div">
+                        <img [src]="details?.image" alt="" onError="this.src='assets/img/angular.png';">
+                    </div>
+                    <div class="img-info d-flex w-100">
+                        <div class="width-130">
+                            <div class="d-block">
+                                <h4 class="m-0 text-break d-block">
+                                    {{details?.fullName}} </h4>
+                                <p>{{details?.countryCode}}-{{details?.phone}}</p>
+                            </div>
+                            <div class="d-block">
+                                <label class="form-label">Registration Date</label>
+                                <p> {{details?.createdAt|date}}</p>
+                            </div>
+                        </div>
+                        <div class="w-100">
+                            <div class="coverdiv">
+                                <div class="d-block">
+                                    <label class="form-label">Email</label>
+                                    <p> {{details?.email}}</p>
+                                </div>
+                                <div class="d-block">
+                                  <label class="form-label">Address</label>
+                                  <p> {{(details?.location && details?.location.length
+                                      &&details?.location[0]?.address)||'---'}}</p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- table start here -->
+            <div class="table-responsive" [hidden]="!list?.length">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <th class="text-center"> Service </th>
+                        <th class="text-center"> Booking Date / Time-Slot </th>
+                        <th class="text-center"> Service Type </th>
+                        <th class="text-center"> Professional </th>
+                        <th class="text-center"> Appointment Fee</th>
+                        <th class="text-center"> Service Fee</th>
+                        <th class="text-center"> Gift</th>
+                        <th class="text-center"> Credit</th>
+                        <th class="text-center"> Total Fee</th>
+                        <th class="text-center"> Status</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of list; let i=index">
+                        <td class="text-center">
+                          <span class="d-block">{{item.serviceId}}</span>
+                        </td>
+                        <td class="text-center">{{ item.date | date }} {{ item.timeSlot }}</td>
+                        <td  class="text-center">{{ item.bookingType }}</td>
+                        <td  class="text-center">{{ item.professionalId.firstName+' '+item.professionalId.lastName}}</td>
+                        <td  class="text-center">€{{ item.appointmentFee || 0}}</td>
+                        <td  class="text-center">€{{ item.serviceFee || 0}}</td>
+                        <td  class="text-center">€{{ item.giftCardAmount || 0}}</td>
+                        <td  class="text-center">€{{ item.creditPoint || 0}}</td>
+                        <td  class="text-center">€{{ item.totalFee || 0}}</td>
+                        <td class="text-center">
+                          <button type="button"
+                          [ngClass]="{
+                            'btn-red': item?.status === 'CANCELLED',
+                            'btn-pen': item?.status === 'PENDING',
+                            'btn-com': item?.status === 'COMPLETED'}">{{item.status}}
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- table end here -->
+        </div>
+    </div>
+</div>

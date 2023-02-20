@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+  <div class="container-fluid p-0 justify-content-between">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="d-flex align-items-center header-div-top">
+        <a class="navbar-brand mr-0">{{header}}</a>
+        <!-- <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        <span>Loreum lipsum</span> -->
+      </div>
+
+    </div>
+    <!-- *ngIf="filterShow" -->
+    <div class="filter-days" hidden>
+      <span>Today</span>
+      <span class="active">This Week</span>
+      <span>This Month</span>
+      <span>This Year</span>
+    </div>
+    <button class="navbar-toggler" type="button" (click)="collapse()" [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <!-- <div class="d-flex filter-links justify-content-end" >
+        <a href="" class="text-decoration-none text-nowrap ml-2">Today</a>
+        <a href="" class="text-decoration-none text-nowrap active ml-2">This Week</a>
+        <a href="" class="text-decoration-none text-nowrap ml-2">This Month</a>
+        <a href="" class="text-decoration-none text-nowrap ml-2">This Year</a>
+     </div> -->
+  </div>
+</nav>

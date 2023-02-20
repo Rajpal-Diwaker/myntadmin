@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-2 offset-md-10 pull-right">
+    <button class="btn-style" (click)="onAddButton()">ADD</button>
+  </div>
+</div>
+<div class="custom-card-form">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th class="text-center"> English Question </th>
+                <th class="text-center"> Greek Question </th>
+                <th class="text-center"> English Answer </th>
+                <th class="text-center"> Greek Answer </th>
+                <th class="text-center"> User Type </th>
+                <th class="text-center"> Status </th>
+                <th class="text-center">Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of faqList">
+                  <td class="text-center">{{data.question}}</td>
+                  <td class="text-center">{{data.question2}}</td>
+                  <td class="text-center">{{data.answer}}</td>
+                  <td class="text-center">{{data.answer2}}</td>
+                  <td class="text-center">
+                    <button type="button"
+                    [ngClass]="{
+                      'btn-red': data?.userType === 'PRO',
+                      'btn-act': data?.userType === 'USER'
+                    }"
+                    >{{data.userType}} </button>
+                  </td>
+                  <td class="text-center">
+                    <button type="button"
+                    [ngClass]="{
+                      'btn-red': data?.status === 'INACTIVE',
+                      'btn-act': data?.status === 'ACTIVE'
+                    }"
+                    (click)="onUpdateStatus(data._id, data.status)"
+                    >{{data.status}} </button>
+                  </td>
+                  <td class="text-center">
+                        <i (click)="onEdit(data)" class="fa fa-pencil action-icon cursor-pointer mb-4"></i>&nbsp;&nbsp;
+                        <!-- <i (click)="onDelete(data._id)" class="fa fa-trash-o action-icon cursor-pointer mb-4"></i> -->
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

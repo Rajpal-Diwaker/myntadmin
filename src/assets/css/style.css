@@ -1,0 +1,117 @@
+table > tbody > tr > td{
+	font-size: 14px;
+}
+table > tbody > tr > th{
+	font-size: 17px!important;
+	font-weight: 600!important;
+	border-bottom: 0;
+}
+.card-stats .card-body{
+	min-height: 130px;
+}
+.custom-card-form h5{
+	font-size: 22px!important;
+}
+.userimage{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 100%;
+}
+.userimage img{
+	position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+	max-width: 100%;
+	max-height: 100%;
+}
+.feedbackdtls_wrap{
+	margin-left: 50px;;
+	padding: 10px 0px;
+    border-bottom: 1px solid #ddd;
+}
+.mar_top{
+	margin-top: 10px;
+}
+.wdth100{
+	width: 100%;
+}
+.textareacss{
+	min-height: 150px!important;
+}
+.form-group{
+	margin-bottom: 20px!important;
+}
+.boxmakdiv .detail-pro{
+	position: relative;
+	box-shadow: 0.2px -2px 12px 9px #f5f5f5;
+    border-radius: 12px;
+    padding: 20px;
+}
+.detail-pro .img-info{
+	padding: 20px 20px;
+}
+.d-block{
+	margin-top: 20px;;
+}
+.min200{
+	min-width: 200px;
+}
+.wid300{
+	max-width: 300px;
+	min-width: 300px!important;
+}
+.contactus .search-input input{
+
+}
+.search-wr.contactus .search-width{
+ width: 350px;
+ margin: 10px 0px;
+}
+.modal-lg, .modal-xl {
+    max-width: 600px!important;
+}
+.modal-header button.close span{
+	font-size: 25px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+.modal-body input.btn-success{
+	background-color: #DDEDE8!important;
+	padding: 10px 20px;
+	width: auto;
+	margin: auto;
+	display: block;
+}
+.modal-body input.btn-success:hover, .modal-body input.btn-success:focus{
+	background-color: #DDEDE8!important;
+}
+.coverdiv{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.accordion-toggle .btn{
+	position: relative;
+}
+.arrupdown{
+	position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.adminchechdiv input{
+	position: absolute;
+	left: 0;
+}
+.invalid {
+  border: 1px solid red!important;
+}

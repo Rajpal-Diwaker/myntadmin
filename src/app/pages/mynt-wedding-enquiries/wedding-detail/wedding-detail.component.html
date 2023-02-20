@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-12 mb-5">
+    <div class="custom-card-form">
+      <div class="detail-pro">
+        <div class="d-flex">
+          <div class="img-div">
+            <img [src]="details?.image" onError="this.src='assets/img/angular.png';">
+          </div>
+          <div class="img-info d-flex w-100">
+            <div class="w-100">
+              <div class="d-block">
+                <label class="form-label">Customer Name</label>
+                <p>{{details?.name}}</p>
+              </div>
+              <div class="d-block">
+                <label class="form-label">Email</label>
+                <p>{{details?.email}}</p>
+              </div>
+            </div>
+            <div class="width-130">
+              <div class="d-block">
+                <label class="form-label">Phone</label>
+                <p>{{details?.countryCode}}-{{details?.phone}}</p>
+              </div>
+              <div class="d-block">
+                <label class="form-label">Wedding Date</label>
+                <p> {{details?.weddingDate | date }}</p>
+              </div>
+            </div>
+            <div class="w-100">
+              <div class="d-block">
+                <label class="form-label">Location</label>
+                <p> {{details?.location?.address || '---'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="custom-card-form">
+      <div class="row detail-pro">
+        <div class="col-md-5">
+          <div class="d-block">
+            <label class="form-label">I'm Interested in these Service</label>
+            <p> {{details?.services}}</p>
+          </div>
+          <div class="d-block">
+            <label class="form-label">I'm Interested in these Service</label>
+            <p> {{details?.interestedServices}}</p>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="d-block">
+            <label class="form-label">Prices Events</label>
+            <p> {{details?.pricingEvent}}</p>
+          </div>
+          <div class="d-block">
+            <label class="form-label">Special Request</label>
+            <p> {{details?.specialRequest || '-'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

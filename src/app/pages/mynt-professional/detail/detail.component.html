@@ -1,0 +1,232 @@
+<div class="row px-2">
+    <div class="col-md-3">
+        <div class="card card-stats user-card">
+            <div class="card-body">
+                <div class="row px-2 align-items-center">
+                    <div class="col-5 col-md-4 px-2">
+                        <div class="icon-big text-center icon-warning">
+                            <img src="../../../assets/img/users.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8 px-2">
+                        <div class="numbers">
+                            <p class="card-category">---</p>
+                            <p class="card-title">Total Earning
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats professionals-card">
+            <div class="card-body ">
+                <div class="row px-2">
+                    <div class="col-5 col-md-4 px-2">
+                        <div class="icon-big text-center icon-warning">
+                            <img src="../../../assets/img/professionals.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8 px-2">
+                        <div class="numbers">
+                            <p class="card-category">{{list?.bookingAccepted}}</p>
+                            <p class="card-title">Booking accepted</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats booking-card">
+            <div class="card-body ">
+                <div class="row px-2">
+                    <div class="col-5 col-md-4 px-2">
+                        <div class="icon-big text-center">
+                            <img src="../../../assets/img/booking.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8 px-2">
+                        <div class="numbers">
+                            <p class="card-category">{{list?.bookingCompleted}}</p>
+                            <p class="card-title">Booking Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stats cancel-card">
+            <div class="card-body ">
+                <div class="row px-2">
+                    <div class="col-5 col-md-4 px-2">
+                        <div class="icon-big text-center">
+                            <img src="../../../assets/img/cancel.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8 px-2">
+                        <div class="numbers">
+                            <p class="card-category">{{list?.bookingCancel}}</p>
+                            <p class="card-title">Booking cancel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-card-form boxmakdiv">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="detail-pro">
+          <div class="d-flex">
+              <div class="img-div">
+                  <img [src]="proData?.image" alt="" onError="this.src='assets/img/angular.png';">
+              </div>
+              <div class="img-info d-flex w-100">
+                  <div class="width-130">
+                      <div class="d-block">
+                          <h4 class="m-0 text-break d-block">
+                            {{proData?.firstName+' '+proData?.lastName}}
+                            <i class="fa fa-star"></i> {{proData?.rating}}
+                          </h4>
+                          <p>{{proData?.countryCode}}-{{proData?.phone}}</p>
+                      </div>
+                      <div class="d-block">
+                        <label class="form-label">Registration Date</label>
+                        <p>{{proData?.createdAt|date:"dd-mm-yyyy"}}</p>
+                      </div>
+                  </div>
+                  <div class="mr-5">
+                    <div class="d-block">
+                      <label class="form-label">Address</label>
+                      <p> {{(proData?.location && proData?.location.length
+                          &&proData?.location[0]?.address)||'---'}}</p>
+                    </div>
+                </div>
+                <div class="width-130">
+                  <div class="d-block">
+                    <label class="form-label">Status</label>
+                    <p><span class="badge"
+                      [ngClass]="{
+                        'badge-success':proData?.status ==='ACTIVE',
+                        'badge-danger':proData?.status ==='BLOCK' || proData?.status ==='INACTIVE',
+                        'badge-info':proData?.status ==='PENDING'
+                      }"
+                      >{{ proData?.status}}
+                      </span></p>
+                  </div>
+                  <div class="d-block">
+                    <label class="form-label">Level</label>
+                    <p><span class="badge"
+                      [ngClass]="{
+                        'badge-success':proData?.professionalLevel,
+                        'badge-danger':!proData?.professionalLevel
+                      }"
+                      >{{ proData?.professionalLevel ||'--'}}
+                      </span>
+                    </p>
+                  </div>
+              </div>
+              </div>
+          </div>
+          <div class="d-block">
+              <label class="form-label">Service expertise they carry</label>
+              <p> <span *ngFor="let position of details?.position; let j=index">
+                      {{position?.subCategoryName}} <span *ngIf="j<details?.position.length-1">,</span> </span>
+              </p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5" [formGroup]="filterForm">
+    <div class="col-md-4">
+      <mat-form-field>
+        <input formControlName="text" matInput (keyup)="applySearchFilter($event.target.value)" placeholder="Filter" autocomplete="off">
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-date-range-input
+          [rangePicker]="campaignOnePicker"
+          [comparisonStart]="filterForm.value.start"
+          [comparisonEnd]="filterForm.value.end"
+          >
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select multiple formControlName="status">
+          <mat-option  *ngFor="let status of statusDisplay;" value="{{status}}">{{status}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-danger btn-sm mr-2" (click)="applyFilter()">Apply</button>
+      <button class="btn btn-default btn-sm" (click)="resetFilter();">Reset</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="serviceId">
+            <th mat-header-cell *matHeaderCellDef> Service </th>
+            <td mat-cell *matCellDef="let row">
+              <span class="badge badge-success mr-2" *ngFor="let service of row.serviceId;">{{ service.subCategoryName }}</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let row"> {{ row.userId?.fullName }} </td>
+          </ng-container>
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let row" width="190"> {{ row.location?.address || '--' }} </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Time Slot </th>
+            <td mat-cell *matCellDef="let row"> {{ row.createdAt | date : "dd-MM-yyyy"}} {{ row.timeSlot }}</td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let row"> €{{ row.totalFee || 0}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let row">
+              <span class="badge"
+              [ngClass]="{
+                'badge-success':row.status ==='COMPLETED',
+                'badge-default':row.status ==='CONFIRM',
+                'badge-info':row.status ==='PENDING',
+                'badge-danger':row.status ==='REJECTED'
+                || row.status ==='INACTIVE'
+                || row.status ==='CANCELLED'
+              }"
+              >{{ row.status}}
+              </span></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+          #paginator
+          [length]="limit"
+          [pageSize]="50"
+          [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 500]"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

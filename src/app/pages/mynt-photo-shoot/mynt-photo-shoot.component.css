@@ -1,0 +1,10 @@
+.contactus  input{
+    height: 60px;
+}
+.contactus .search-input i {
+    position: absolute;
+    top: 39%;
+    font-size: 21px;
+    transform: translateY(-50%);
+    left: 20px;
+}

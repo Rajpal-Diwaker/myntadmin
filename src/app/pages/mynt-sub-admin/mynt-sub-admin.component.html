@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-2 offset-md-10 pull-right">
+    <button class="btn-style" (click)="onAddButton()">Create Sub Admin</button>
+  </div>
+</div>
+<div class="custom-card-form">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th> Name </th>
+                <th> Contact Number </th>
+                <th> Email </th>
+                <th> Role </th>
+                <th> Status </th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of subAdminList">
+                  <td>{{data.fullName}}</td>
+                  <td>{{data.countryCode}}-{{data.phone}}</td>
+                  <td>{{data.email}}</td>
+                  <td>{{data.permission.length > 0 ? data.permission:'N/A'}}</td>
+                  <td class="text-center">
+                    <button type="button"
+                    [ngClass]="{
+                      'btn-red': data?.status === 'INACTIVE',
+                      'btn-act': data?.status === 'ACTIVE'
+                    }"
+                    (click)="onUpdateStatus(data._id, data.status)"
+                    >{{data.status}} </button>
+                  </td>
+                  <td>
+                        <i (click)="onEdit(data)" class="fa fa-pencil action-icon cursor-pointer mb-4"></i>&nbsp;&nbsp;
+                        <!-- <i (click)="onDelete(data._id)" class="fa fa-trash-o action-icon cursor-pointer mb-4"></i> -->
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

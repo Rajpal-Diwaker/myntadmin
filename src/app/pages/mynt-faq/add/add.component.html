@@ -1,0 +1,69 @@
+<div class="col-md-12">
+  <div class="card card-user">
+    <div class="card-body">
+      <form novalidate="" class="ng-untouched ng-pristine ng-valid"
+        (ngSubmit)="onSubmit(addForm.value)" [formGroup]="addForm">
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>English Question</label>
+              <input type="text" class="form-control"
+              formControlName="question"
+              [ngClass]="{'validationcolor':addForm.get('question').hasError('required') && addForm.get('question').touched&& ifSubmitted==true}" />
+            </div>
+          </div>
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Greek Question</label>
+              <input type="text" class="form-control"
+              formControlName="question2"
+              [ngClass]="{'validationcolor':addForm.get('question2').hasError('required') && addForm.get('question2').touched&& ifSubmitted==true}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>English Answer</label>
+              <input type="text" class="form-control"
+              formControlName="answer"
+              [ngClass]="{'validationcolor':addForm.get('answer').hasError('required') && addForm.get('answer').touched&& ifSubmitted==true}" />
+            </div>
+          </div>
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Greek Answer</label>
+              <input type="text" class="form-control"
+              formControlName="answer2"
+              [ngClass]="{'validationcolor':addForm.get('answer2').hasError('required') && addForm.get('answer2').touched&& ifSubmitted==true}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>User Type</label>
+              <select class="form-control" formControlName="userType">
+                <option selected value="USER">USER</option>
+                <option value="PRO">PROFESSIONAL</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 pr-1">
+            <div class="form-group">
+              <label>Status</label>
+              <select class="form-control" formControlName="status">
+                <option selected value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ml-auto mr-auto">
+            <button class="btn btn-primary btn-round" type="submit">{{editForm?'Update':'Add'}}</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

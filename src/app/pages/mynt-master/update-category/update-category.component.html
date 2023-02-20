@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="custom-card-form wdth100">
+        <div class="col-md-6">
+            <div class=" clearfix">
+                <h5>{{editFlag?'Edit Category':'Create Category'}}</h5>
+                <form [formGroup]="myform">
+                    <div class="row">
+                        <div class="col-md-12 pr-1">
+                            <div class="d-flex file-upload-wr-div">
+                                <div class="form-group" formArrayName="images"
+                                    *ngFor="let item of myform.get('images')?.controls; let i = index;">
+                                    <div [formGroupName]="i">
+                                        <ng-container *ngIf="imageSrc[i]; else elseTemplate">
+                                            <img id="blah" [src]="imageSrc[i]? imageSrc[i]: 'assets/img/upload-img.png'"
+                                                onError="this.src='assets/img/upload-img.png'">
+                                            <span class="del-icon" (click)="changeImage(item); deleteImages(i)">
+                                                <i class="fa fa-trash"></i>
+                                            </span>
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                            <label for="pic{{i}}">
+                                                <img id="blah" [src]=" 'assets/img/upload-img.png'"
+                                                    onError="this.src='assets/img/upload-img.png'">
+                                            </label>
+                                        </ng-template>
+                                        <!-- <input type="file" id="pic{{i}}" (change)="fileUpload($event)" class="form-control"> -->
+                                        <input id="pic{{i}}" class="form-control" (change)="changeImage(item)"
+                                            (change)="readURL($event, i)" accept="image/*" type="file">
+                                        <!--  <div class="img-upload-box">
+                                        <img class="avatar border-gray" src="{{ imageSrc[i]? imageSrc[i]: 'assets/img/upload-img.png' }}"
+                                        onError="" (click)="showImage(imageSrc[i])">
+                                        <input type="file" (change)="fileUpload($event)" class="form-control">
+                                    </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="addmore_btn mb-3" [hidden]="myform.get('images').value.length > 3">
+                                <button class="whitebtns_style btn-style btn-light" type="button" (click)="addMoreImages()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add images</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Category English Name </label>
+                                <input formControlName="categoryName" type="text" class="form-control"
+                                    placeholder="Enter Category English Name"
+                                    [class]="{ 'invalid': f.categoryName.errors && f.categoryName.touched}"
+                                >
+                            </div>
+                            <!-- <div *ngIf="f.categoryName.errors && f.categoryName.touched">
+                                <div *ngIf="f.categoryName.errors.required">
+                                    <p style="color: red;">Category English Name is required</p>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label class="form-label">Category Greek Name</label>
+                              <input formControlName="categoryName2" type="text" class="form-control"
+                                  placeholder="Enter Category Greek Name"
+                                  [class]="{ 'invalid': f.categoryName2.errors && f.categoryName2.touched}"
+                              >
+                          </div>
+                          <!-- <div *ngIf="f.categoryName2.errors && f.categoryName2.touched">
+                              <div *ngIf="f.categoryName2.errors.required">
+                                  <p style="color: red;">Category Greek Name is required</p>
+                              </div>
+                          </div> -->
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Description English</label>
+                                <textarea
+                                  formControlName="categoryDescription"
+                                  placeholder="Enter English Description"
+                                  class="form-control textarea textareacss"
+                                  [class]="{ 'invalid': f.categoryDescription.errors && f.categoryDescription.touched}"
+                                ></textarea>
+                            </div>
+                            <!-- <div *ngIf="f.categoryDescription.errors && f.categoryDescription.touched">
+                                <div *ngIf="f.categoryDescription.errors.required">
+                                    <p style="color: red;">Description is required</p>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label class="form-label">Description Greek</label>
+                              <textarea formControlName="categoryDescription2" placeholder="Enter Greek Description"
+                                  class="form-control textarea textareacss"
+                                  [class]="{ 'invalid': f.categoryDescription2.errors && f.categoryDescription2.touched}"
+                              ></textarea>
+                          </div>
+                          <!-- <div *ngIf="f.categoryDescription2.errors && f.categoryDescription2.touched">
+                              <div *ngIf="f.categoryDescription2.errors.required">
+                                  <p style="color: red;">Description is required</p>
+                              </div>
+                          </div> -->
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="update ml-auto mr-auto">
+                            <button type="submit" (click)="submit(myform.value)" class="btn-style">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

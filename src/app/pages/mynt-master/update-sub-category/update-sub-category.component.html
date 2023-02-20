@@ -1,0 +1,166 @@
+<div class="row">
+    <div class="custom-card-form wdth100">
+        <div class="col-md-8">
+            <div class="clearfix">
+                <h5>{{editFlag?'Edit Service':'Create Service'}}</h5>
+                <div class="col-md-12">
+                    <form [formGroup]="myform">
+                        <div class="row mn-1">
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Service Name </label>
+                                    <input type="text" formControlName="subCategoryName" class="form-control"
+                                        placeholder="Enter Service English Name">
+                                    <div *ngIf="f?.subCategoryName?.errors && f.subCategoryName?.touched" class="invalid">
+                                        <div *ngIf="f?.subCategoryName?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                              <div class="form-group">
+                                  <label class="form-label">Service Name 2 </label>
+                                  <input type="text" formControlName="subCategoryName2" class="form-control"
+                                      placeholder="Enter Service Greek Name">
+                                  <div *ngIf="f?.subCategoryName2?.errors && f.subCategoryName2?.touched" class="invalid">
+                                      <div *ngIf="f?.subCategoryName2?.errors?.required">
+                                          <p style="color: red;">Required</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Time</label>
+                                    <input type="text" formControlName="time" class="form-control" placeholder="Enter Time">
+                                    <div *ngIf="f?.time?.errors && f?.time?.touched" class="invalid">
+                                        <div *ngIf="f?.time?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-1">
+                                <div class="form-group">
+                                   <label class="form-label">Service</label>
+                                    <select formControlName="categoryId"  class="form-control">
+                                        <option *ngFor="let item of categoryList; let i=index" [value]='item?._id'>{{item?.categoryName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mn-1">
+                            <!-- price for all level -->
+                            <div class="col-md-12 px-1">
+                                <label class="form-label font-weight-bold">Levels </label>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Price 1</label>
+                                    <input type="text" numberonly formControlName="level1" class="form-control"
+                                        placeholder="Enter level1 price">
+                                    <div *ngIf="f?.level1.errors && f?.level1.touched" class="invalid">
+                                        <div *ngIf="f?.level1.errors.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Price 2</label>
+                                    <input type="text" numberonly formControlName="level2" class="form-control"
+                                        placeholder="Enter level2 price">
+                                    <div *ngIf="f?.level2.errors && f.level2.touched" class="invalid">
+                                        <div *ngIf="f?.level2?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label class="form-label"> Price 3</label>
+                                    <input type="text" numberonly formControlName="level3" class="form-control"
+                                        placeholder="Enter level3 price">
+                                    <div *ngIf="f?.level3?.errors && f?.level3?.touched" class="invalid">
+                                        <div *ngIf="f?.level3?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- price for all level -->
+                        </div>
+                        <div class="row mn-1">
+                            <div class="col-md-12 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Service Description</label>
+                                    <textarea formControlName="subCategoryDescription" class="form-control textareacss textarea"
+                                        placeholder="Enter Service English Description"></textarea>
+                                    <div *ngIf="f?.subCategoryDescription?.errors && f?.subCategoryDescription?.touched"
+                                        class="invalid">
+                                        <div *ngIf="f?.subCategoryDescription?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mn-1">
+                          <div class="col-md-12 px-1">
+                              <div class="form-group">
+                                  <label class="form-label">Service Description 2</label>
+                                  <textarea formControlName="subCategoryDescription2" class="form-control textareacss textarea"
+                                      placeholder="Enter Service Greek Description"></textarea>
+                                  <div *ngIf="f?.subCategoryDescription2?.errors && f?.subCategoryDescription2?.touched"
+                                      class="invalid">
+                                      <div *ngIf="f?.subCategoryDescription2?.errors?.required">
+                                          <p style="color: red;">Required</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row mn-1">
+                            <div class="col-md-12 px-1">
+                                <div class="form-group">
+                                    <label class="form-label">Brief Description</label>
+                                    <textarea formControlName="briefDescription" class="form-control textareacss textarea"
+                                        placeholder="Enter Brief Description English"></textarea>
+                                    <div *ngIf="f?.briefDescription?.errors && f?.briefDescription?.touched" class="invalid">
+                                        <div *ngIf="f?.briefDescription?.errors?.required">
+                                            <p style="color: red;">Required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mn-1">
+                          <div class="col-md-12 px-1">
+                              <div class="form-group">
+                                  <label class="form-label">Brief Description 2</label>
+                                  <textarea formControlName="briefDescription2" class="form-control textareacss textarea"
+                                      placeholder="Enter Brief Description Greek"></textarea>
+                                  <div *ngIf="f?.briefDescription2?.errors && f?.briefDescription2?.touched" class="invalid">
+                                      <div *ngIf="f?.briefDescription2?.errors?.required">
+                                          <p style="color: red;">Required</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="button" class="btn-style mx-2" [routerLink]="[ '/getSubcategory']" [queryParams]="{ list: details?.categoryId?._id||details?.list }">Cancel</button>
+                                <button (click)="submitForm(myform.value)" type="submit" class="btn-style mx-2">
+                                    {{editFlag?'edit Service': 'Create Service'}}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

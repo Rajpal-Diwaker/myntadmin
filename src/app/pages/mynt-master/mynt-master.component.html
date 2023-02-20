@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="custom-card-form">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="text-nowrap">Show Category</h5>
+        <button type="submit" class="btn-style" [routerLink]="[ '/updateCategory' ]">Create new
+          Category</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class=" text-primary">
+            <th class="text-center"> Category Name </th>
+            <th class="text-center wid300"> Category description </th>
+            <th class="text-center"> Services </th>
+            <th class="text-center"> Status </th>
+            <th class="text-center"> Action </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list; let i=index">
+              <td class="text-center">
+                <img class="table-inner-img" [src]="item?.categoryImage[0]" alt="">
+                <span class="d-block"> {{item?.categoryName}}</span>
+                <span class="d-block">[{{item?.categoryName2}}]</span>
+              </td>
+              <td class="text-center wid300">
+                <span class="d-block">{{item?.categoryDescription}}</span>
+                <span class="d-block">[{{item?.categoryDescription2}}]</span>
+              </td>
+              <td class="text-center" width="40" >
+                <i [hidden]="item?.categoryName=='Wedding'" (click)="navigate(item,1)" class="fa fa-eye action-icon cursor-pointer"></i>
+              </td>
+              <td class="text-center">
+                <button (click)="changeStatus(item)" type="button" class="btn-style">{{item?.status|uppercase}}</button>
+              </td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center">
+                  <i (click)="navigate(item,2)" class="fa fa-pencil action-icon mr-3 cursor-pointer"></i>
+                  <!-- <i (click)="deleteCateogry(item)" class="fa fa-trash action-icon cursor-pointer"></i> -->
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <ng-container *ngIf="!list?.length">
+        <h3 style="text-align: center;">Not Found</h3>
+      </ng-container>
+    </div>
+  </div>
+</div>

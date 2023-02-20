@@ -1,0 +1,55 @@
+.file-upload-wr-div{
+    flex-flow: wrap;
+}
+.file-upload-wr-div .form-group{
+    width: 110px;
+    height: 110px;
+    min-width: 110px;
+    min-height: 110px;
+    margin-right: 5px;
+    position: relative;
+    border: 1px solid #DDEDE8;
+    border-radius: 5px;
+}
+.file-upload-wr-div .form-group div{
+    height: 100%;
+}
+.file-upload-wr-div .form-group label{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.file-upload-wr-div .form-group img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    object-fit: cover;
+}
+.del-icon{
+    position: absolute;
+    top:2px;
+    right:2px;
+    width:30px;
+    height:30px;
+    min-width: 30px;
+    min-height:30px;
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.file-upload-wr-div .form-group .fa-trash{
+    font-size:19px;
+    color:#000;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

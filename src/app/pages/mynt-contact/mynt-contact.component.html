@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a style="cursor: pointer;" data-target="#tab1" role="tab" data-toggle="tab">USER</a></li>
+          <li><a style="cursor: pointer;" data-target="#tab2" role="tab" data-toggle="tab">PROFESSIONAL</a></li>
+        </ul>
+        <div class="tab-content ">
+          <div role="tabpanel" class="tab-pane active " id="tab1">
+            <div class="row search-wr contactus">
+              <div class="col-md-12 d-flex">
+                <div class="search-width">
+                  <div class="search-input">
+                    <input type="text" (keyup)="searchUser($event.target.value)" placeholder="Search" class="form-group">
+                    <i class="fa fa-search"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-xs">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th class="text-center">Name</th>
+                      <th class="text-center"> Email </th>
+                      <th class="text-center"> Message </th>
+                      <th class="text-center"> Date</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of contactUserList">
+                        <td class="text-center">{{data.userId.fullName}}</td>
+                        <td class="text-center">{{data.email}}</td>
+                        <td class="text-center">{{data.message}}</td>
+                        <td class="text-center">{{data.createdAt | date}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="tab2">
+            <div class="row search-wr">
+              <div class="col-md-12 d-flex">
+                <div class="search-width">
+                  <div class="search-input">
+                    <input type="text" (keyup)="searchPro($event.target.value)" placeholder="Search" class="form-group">
+                    <i class="fa fa-search"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-xs">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th class="text-center">Name</th>
+                      <th class="text-center"> Email </th>
+                      <th class="text-center"> Message </th>
+                      <th class="text-center"> Date</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of contactProList">
+                        <td class="text-center">{{data.userId.firstName+' '+data.userId.lastName}}</td>
+                        <td class="text-center">{{data.email}}</td>
+                        <td class="text-center">{{data.message}}</td>
+                        <td class="text-center">{{data.createdAt | date}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

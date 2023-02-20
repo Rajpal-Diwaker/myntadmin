@@ -1,0 +1,82 @@
+<div class="col-md-12">
+  <div class="card card-user">
+    <div class="card-body">
+      <div class="chat_wrapper">
+        <div class="row">
+          <div class="col-md-4 chat_user_info">
+            <mat-form-field>
+              <input matInput  placeholder="Search" autocomplete="off">
+            </mat-form-field>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let user of userList" (click)="loadChatBox(user)">
+
+              {{ user.fullName }}
+              <span  matBadge="{{ user.count }}"
+              matBadgeColor="warn"
+              [matBadgeHidden]="user.count == 0 ? true :false"
+              MatBadgeSize = 'small'
+              MatBadgePosition ="below after">
+              &nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div class="col-md-8">
+            <div class="chat__details">
+              <section class="msger">
+                <header class="msger-header">
+                  <div class="msger-header-title">
+                    <i class="fas fa-comment-alt"></i> Chat</div>
+                </header>
+
+                <main class="msger-chat">
+                  <div *ngFor="let chat of chatData;">
+                    <div *ngIf="chat.senderId ==currentActiveUser;then senderMessage;else receiverMessage;"></div>
+                    <ng-template #senderMessage>
+                      <div class="msg left-msg">
+                        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"></div>
+
+                        <div class="msg-bubble">
+                          <div class="msg-text">{{chat.message}}</div>
+                          <div class="msg-info-time">{{ chat.timeStamp | dateAgo }}</div>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template #receiverMessage>
+                      <div class="msg right-msg">
+                        <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
+                        <div class="msg-bubble">
+                          <div class="msg-text">{{chat.message}}</div>
+                          <div class="msg-info-time">{{ chat.timeStamp | dateAgo }}</div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  <!-- <div class="msg right-msg">
+                    <div class="msg-img" style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"></div>
+
+                    <div class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name"> User-1</div>
+                        <div class="msg-info-time">02:50</div>
+                      </div>
+
+                      <div class="msg-text">
+                        You can change your name in JS section!
+                      </div>
+                    </div>
+                  </div> -->
+                  </div>
+                </main>
+                 <form class="msger-inputarea" (submit)="sendMessage();" [formGroup]="sendForm">
+                  <input type="text" formControlName="text" class="msger-input"
+                  placeholder="Type a message here ...">
+                  <button type="submit" class="btn btn-success m-0" [disabled]="!sendForm.valid">Send</button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

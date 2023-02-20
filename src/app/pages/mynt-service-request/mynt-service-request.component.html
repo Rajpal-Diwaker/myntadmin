@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="custom-card-form">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class=" text-primary">
+            <th class="text-center">Service</th>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center" width="190"> Address </th>
+            <th class="text-center"> Date / Time </th>
+            <th class="text-center"> Professional </th>
+            <th class="text-center"> Appointment Fee</th>
+            <th class="text-center"> Service Fee</th>
+            <th class="text-center"> Gift</th>
+            <th class="text-center"> Credit</th>
+            <th class="text-center"> Total Fee</th>
+            <th class="text-center"> Status</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list; let i=index">
+              <td>{{getServiceValue(item.serviceId)}}</td>
+              <td>{{item?.userId?.fullName}}</td>
+              <td width="190">{{item?.location?.address||'-----'}}</td>
+              <td class="text-center">{{ item.date | date }} {{ item.timeSlot }}</td>
+              <td  class="text-center">{{ item?.professionalId?.firstName+' '+item?.professionalId?.lastName}}</td>
+              <td  class="text-center">€{{ item.appointmentFee || 0}}</td>
+              <td  class="text-center">€{{ item.serviceFee || 0}}</td>
+              <td  class="text-center">€{{ item.giftCardAmount || 0}}</td>
+              <td  class="text-center">€{{ item.creditPoint || 0}}</td>
+              <td  class="text-center">€{{ item.totalFee || 0}}</td>
+              <td class="text-center">
+                <button type="button" [ngClass]="{'btn-red': item?.status === 'CANCELLED','btn-pen': item?.status === 'PENDING','btn-act': item?.status === 'ACTIVE' || item?.status === 'INACTIVE' || item?.status === 'ACCEPTED' || item?.status === 'REJECTED','btn-com': item?.status === 'COMPLETED'}">{{item?.status}} </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

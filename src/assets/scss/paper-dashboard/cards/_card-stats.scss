@@ -1,0 +1,66 @@
+%card-stats{
+  hr{
+    margin: 5px 15px;
+  }
+}
+.user-card{
+  border-bottom:2px solid #ffe152;
+}
+.professionals-card{
+  border-bottom:2px solid #a1aaff;
+}
+.earning-card{
+  border-bottom:2px solid #64ebc1;
+}
+.cancel-card{
+  border-bottom:2px solid #52e7ff;
+}
+.booking-card{
+  border-bottom:2px solid #ffadce;
+}
+.card-stats{
+    .card-body{
+        padding: 15px;
+
+        .numbers{
+
+            p{
+                margin-bottom: 0;
+                font-size:13px;
+                color: #0D0D0D;
+                font-weight:400;
+            }
+            .card-title{
+                font-size:12px;
+                color: #0D0D0D;
+                font-weight:400;
+            }
+            .card-category {
+              color: #0D0D0D;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: 1.4em;
+            }
+        }
+    }
+    .card-footer{
+        padding: 0px 15px 15px;
+
+        .stats{
+          color: $dark-gray;
+        }
+
+        hr{
+          margin-top: 10px;
+          margin-bottom: 15px;
+        }
+    }
+    .icon-big {
+
+        i{
+            line-height: 59px;
+        }
+    }
+
+
+}

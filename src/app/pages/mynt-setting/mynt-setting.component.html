@@ -1,0 +1,180 @@
+<div class="row px-2">
+  <div class="col-md-12">
+    <h3>Refer And Earn</h3>
+  </div>
+  <div class="col-md-6 px-2" *ngFor="let data of settingList">
+    <div class="card card-stats user-card">
+      <div class="card-body pos_rel">
+          <div class="numbers text-center">
+            <i  (click)="openEditModel(data, 'sender')" class="editicon fa fa-pencil action-icon cursor-pointer mb-4"></i>
+            <p class="card-category">Sender</p>
+            <p class="card-title">{{data.referAndEarn.sender}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 px-2" *ngFor="let data of settingList">
+    <div class="card card-stats user-card">
+      <div class="card-body pos_rel">
+        <div class="numbers text-center">
+          <i  (click)="openEditModel(data, 'receiver')" class="editicon fa fa-pencil action-icon cursor-pointer mb-4"></i>
+          <p class="card-category">Receiver</p>
+          <p class="card-title">{{data.referAndEarn.receiver}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-4 px-2" *ngFor="let data of settingList">
+    <div class="card card-stats user-card">
+      <div class="card-body pos_rel">
+        <i  (click)="openEditModel(data, 'booking')" class="editicon fa fa-pencil action-icon cursor-pointer mb-4"></i>
+        <div class="numbers text-center">
+          <p class="card-category">Booking Amount</p>
+          <p class="card-title">{{data.bookingAmount}}</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Cms Page</h3>
+    <!-- <div class="pull-right"><button class="btn-style" (click)="onAddButton()">ADD</button></div> -->
+  </div>
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <th class="text-center">English Title </th>
+          <th class="text-center">Greek Title </th>
+          <th class="text-center"> User Type </th>
+          <th class="text-center"> Status </th>
+          <th class="text-center">Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of cmsPageList">
+            <td class="text-center">{{data.title}}</td>
+            <td class="text-center">{{data.title2}}</td>
+            <td class="text-center">{{data.userType}}</td>
+            <td class="text-center">
+              <button type="button"
+              [ngClass]="{
+                'btn-red': data?.status === 'INACTIVE',
+                'btn-act': data?.status === 'ACTIVE'
+              }"
+              (click)="onUpdateStatus(data._id, data.status)"
+              >{{data.status}} </button>
+            </td>
+            <td class="text-center">
+                  <i (click)="onEdit(data)" class="fa fa-pencil action-icon cursor-pointer mb-4"></i>&nbsp;&nbsp;
+                  <!-- <i (click)="onDelete(data._id)" class="fa fa-trash-o action-icon cursor-pointer mb-4"></i> -->
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+ <!-- Modal Edit Settings-->
+<div id="setting-edit-popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title">Edit Setting</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="onCloseModal()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editSettingForm" (submit)="editSettingFormSubmit(editSettingForm.value)">
+          <input type="hidden" formControlName="id">
+          <input type="hidden" formControlName="field">
+          <div class="form-group">
+            <input type="number" formControlName="input" class="form-control">
+            <div class="error-font" *ngIf="editSettingFormSubmitted || editSettingForm.get('input').invalid && editSettingForm.get('input').touched">
+              <small *ngIf="editSettingForm.get('input').errors?.required">This is required</small>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-success btn-sm" value="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+ <!-- Modal Edit Cms Page-->
+ <div id="cms-edit-popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-c">
+    <div class="modal-content modal-content-c">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title">{{editPageTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="onClosePageModal()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="pageForm" (submit)="onSubmit(pageForm.value)">
+          <input type="hidden" formControlName="id">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Title English</label>
+                <input type="text" formControlName="title" class="form-control">
+                <div class="error-font" *ngIf="pageFormSubmitted || pageForm.get('title').invalid && pageForm.get('title').touched">
+                  <small *ngIf="pageForm.get('title').errors?.required">English Title is required</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Title Greek</label>
+                <input type="text" formControlName="title2" class="form-control">
+                <div class="error-font" *ngIf="pageFormSubmitted || pageForm.get('title2').invalid && pageForm.get('title2').touched">
+                  <small *ngIf="pageForm.get('title2').errors?.required">Greek Title is required</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>User Type</label>
+                <select class="form-control" formControlName="userType">
+                  <option selected value="USER">USER</option>
+                  <option value="PRO">PROFESSIONAL</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Content (English) </label>
+                <ckeditor formControlName="text" name="text" class="cms_pages_validation" [config]="editorConfig"></ckeditor>
+                <div class="error-font" *ngIf="pageFormSubmitted || pageForm.get('text').invalid && pageForm.get('text').touched">
+                  <small *ngIf="pageForm.get('text').errors?.required">English Content is required</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Content (Greek)</label>
+                <ckeditor formControlName="text2" name="text2" class="cms_pages_validation"></ckeditor>
+                <div class="error-font" *ngIf="pageFormSubmitted || pageForm.get('text2').invalid && pageForm.get('text2').touched">
+                  <small *ngIf="pageForm.get('text2').errors?.required">Greek Content is required</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="form-group">
+                <input type="submit" class="btn btn-info btn-sm" value="submit">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->

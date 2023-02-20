@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="custom-card-form">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="text-nowrap">Services</h5>
+                <button type="submit" class="btn-style" (click)="navigate(0)"
+                    [routerLink]="[ '/updateSubCategory' ]">Create
+                    new service</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class=" text-primary">
+                        <th class="text-center"> Category Name </th>
+                        <th class="text-center"> Services Name </th>
+                        <th> Services Description </th>
+                        <th> Brief Description </th>
+                        <th class="text-center"> Action </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of list; let i=index">
+                            <td class="text-center">
+                              <span class="d-block">{{item?.categoryId?.categoryName|titlecase}}</span>
+                              <span class="d-block">[{{item?.categoryId?.categoryName2|titlecase}}]</span>
+                            </td>
+                            <td class="text-center">
+                              <span class="d-block">{{item?.subCategoryName|titlecase}}</span>
+                              <span class="d-block">[{{item?.subCategoryName2|titlecase}}]</span>
+
+                            </td>
+                            <td width="260" class="text-break">
+                              <span class="d-block">{{item?.subCategoryDescription}}</span>
+                              <span class="d-block">[{{item?.subCategoryDescription2}}]</span>
+                            </td>
+                            <td width="260" class="text-break">
+
+                              <span class="d-block">{{item?.briefDescription}}</span>
+                              <span class="d-block">[{{item?.briefDescription2}}]</span>
+                            </td>
+                            <td width="110">
+                                <div class="d-flex align-items-center flex-column">
+                                    <i [routerLink]="[ '/updateSubCategory' ]" (click)="navigate(item)"
+                                        class="fa fa-pencil action-icon cursor-pointer mb-4"></i>
+                                    <button (click)="changeStatus(item)" type="button"
+                                        class="btn-style">{{item?.status|uppercase}}</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+        <ng-container *ngIf="!list?.length">
+            <h3 style="text-align: center;">Not Found</h3>
+        </ng-container>
+    </div>
+</div>

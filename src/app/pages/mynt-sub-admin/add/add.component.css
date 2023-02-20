@@ -1,0 +1,16 @@
+.adminchechdiv{
+    display: flex;
+    margin: 10px 0px;
+    justify-content: space-between;
+    position: relative;
+}
+.addsubadmin_css h3{
+    font: 21px;
+    margin-bottom: 20px;;
+}
+.adminchechdiv label{
+    width: 100%!important;
+}
+.invalid {
+  border: 1px solid red!important;
+}

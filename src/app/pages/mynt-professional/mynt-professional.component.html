@@ -1,0 +1,215 @@
+<div class="custom-card-form">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-stats user-card">
+          <div class="card-body ">
+            <div class="row px-2">
+              <div class="col-5 col-md-4 px-2">
+                <div class="icon-big text-center icon-warning">
+                  <img src="../../../assets/img/logedin-pro.svg" alt="">
+                </div>
+              </div>
+              <div class="col-7 col-md-8 px-2">
+                <div class="numbers">
+                  <p class="card-category">{{count?.loggedCustomer}}</p>
+                  <p class="card-title">Logged in Professional</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-stats  professionals-card">
+            <div class="card-body">
+              <div class="row px-2 align-items-center">
+                <div class="col-5 col-md-4 px-2">
+                  <div class="icon-big text-center icon-warning">
+                    <img src="../../../assets/img/professionals.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-7 col-md-8 px-2">
+                  <div class="numbers">
+                    <p class="card-category">{{count?.totalNumberOfCustomer}}</p>
+                    <p class="card-title">Total number of profesional
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-stats booking-card">
+          <div class="card-body ">
+            <div class="row px-2">
+              <div class="col-5 col-md-4 px-2">
+                <div class="icon-big text-center">
+                  <img src="../../../assets/img/active-pro.svg" alt="">
+                </div>
+              </div>
+              <div class="col-7 col-md-8 px-2">
+                <div class="numbers">
+                  <p class="card-category">{{count?.activeCustomer}}</p>
+                  <p class="card-title">Active Professional</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-5" [formGroup]="filterForm">
+    <div class="col-md-12 mb-5">
+      <button class="btn btn-info pull-right" (click)="pendingFilter();">Professional Request</button>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field>
+        <input formControlName="text" matInput (keyup)="applySearchFilter($event.target.value)" placeholder="Filter" autocomplete="off">
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-date-range-input
+          [rangePicker]="campaignOnePicker"
+          [comparisonStart]="filterForm.value.start"
+          [comparisonEnd]="filterForm.value.end"
+          >
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select multiple formControlName="status">
+          <mat-option  value="ACTIVE">ACTIVE</mat-option>
+          <mat-option  value="INACTIVE">INACTIVE</mat-option>
+          <mat-option  value="BLOCK">BLOCK</mat-option>
+          <mat-option  value="PENDING">PENDING</mat-option>
+          <mat-option  value="REJECTED">REJECTED</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-danger btn-sm mr-2" (click)="applyFilter()">Apply</button>
+      <button class="btn btn-default btn-sm" (click)="resetFilter();">Reset</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let row">
+              <img class="table-inner-img"  src="{{ row.image }}"  onError="this.src='assets/img/angular.png';">
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let row"> {{ row.firstName }} </td>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <td mat-cell *matCellDef="let row"> {{ row.countryCode +'-'+row.phone }} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let row"> {{ row.email }} </td>
+          </ng-container>
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let row" width="190"> {{ row.location[0]?.address || '--' }} </td>
+          </ng-container>
+          <ng-container matColumnDef="professionalLevel">
+            <th mat-header-cell *matHeaderCellDef> Level </th>
+            <td mat-cell *matCellDef="let row">
+              <button  class="btn btn-sm"
+              (click)="levelUpdate(row)"
+              [ngClass]="{
+                'btn-success':row.professionalLevel,
+                'btn-danger':!row.professionalLevel
+              }"
+              >{{ row.professionalLevel || '--' }}
+              </button></td>
+          </ng-container>
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let row"> {{ row.createdAt | date : "dd-MM-yyyy"}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let row">
+              <span class="badge"
+              [ngClass]="{
+                'badge-success':row.status ==='ACTIVE',
+                'badge-danger':row.status ==='BLOCK' || row.status ==='INACTIVE',
+                'badge-info':row.status ==='PENDING'
+              }"
+              >{{ row.status}}
+              </span></td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.status !== 'PENDING'; else showNavigationUrl;">
+                <a class="btn btn-sm btn-info mr-2" [routerLink]="['/professional/details', element._id]"><i class="fa fa-eye fa-1.5x" aria-hidden="true" ></i></a>
+              </ng-container>
+              <ng-template  #showNavigationUrl>
+                <a class="btn btn-sm btn-info mr-2" (click)="navigateDetails(element)"><i class="fa fa-eye fa-1.5x" aria-hidden="true" ></i></a>
+              </ng-template>
+              <ng-container>
+                <button  class="btn btn-sm btn-success mr-2" (click)='show_update_popup(element)'>Update Status</button>
+              </ng-container>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator
+          #paginator
+          [length]="limit"
+          [pageSize]="50"
+          [pageSizeOptions]="[5, 10, 20, 50, 100, 200, 500]"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="status-edit-popup" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title">Update Status</h5>
+        <button type="button" class="close" data-dismiss="modal" (click)="onCloseModal()">
+          <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+      <div class="modal-body">
+       <form [formGroup]="updatestatusform" (submit)="updatestatusformsubmit()">
+        <input type="hidden" formControlName="id">
+        <div class="form-group">
+          <label>Status</label>
+          <select formControlName="status" class="form-control">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+              <option value="BLOCK">BLOCK</option>
+              <option value="PENDING">PENDING</option>
+              <option value="REJECTED">REJECTED</option>
+          </select>
+        </div>
+        <button  class="btn btn-danger btn-sm mr-2" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
+        <button type="submit" class="btn btn-success btn-sm">Update</button>
+       </form>
+      </div>
+    </div>
+  </div>
+</div>

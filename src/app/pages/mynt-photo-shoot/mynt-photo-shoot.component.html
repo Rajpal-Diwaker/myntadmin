@@ -1,0 +1,30 @@
+<div class="row search-wr contactus">
+  <div class="col-md-12 d-flex">
+    <div class="search-width">
+      <div class="search-input">
+        <input type="text" (keyup)="search($event.target.value)" placeholder="Search" class="form-group">
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <th class="text-center"> User Name </th>
+          <th class="text-center"> Email </th>
+          <th class="text-center"> Contact No</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of photoShootList">
+            <td class="text-center">{{data?.userId?.fullName || data?.userId?.firstName}}</td>
+            <td class="text-center">{{data.email}}</td>
+            <td class="text-center">{{data.userId?.countryCode+'-'+data.userId?.phone}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

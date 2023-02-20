@@ -1,0 +1,52 @@
+.modal h5.modal-title {
+    color: #ddede8;
+    opacity: 1;
+    font-size: 2rem;
+}
+
+.modal-bg{
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    background: rgba(0,0,0,.4);
+    display: block;
+    z-index: -1;
+}
+.radio-div input[type=radio] {
+	border: 0px;
+	width: 85%;
+	height: 30px;
+	margin: 0;
+}
+
+.radio-div label {
+	margin-left: 10px;
+}
+
+.radio-div {
+	display: flex;
+	align-items: center
+}
+
+.radio-div .radio-circle {
+	width: 30px;
+	min-width: 30px;
+	height: 30px;
+	min-height: 30px;
+}
+
+.single-search input{
+    height:60px;
+}
+.card-stats .card-category{
+    font-size:34px;
+    font-weight:700;
+}
+.card-stats .card-title{
+    font-size:15px;
+    font-weight:400;
+}

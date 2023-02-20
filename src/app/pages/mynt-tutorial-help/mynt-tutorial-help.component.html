@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-2 offset-md-10 pull-right">
+    <button class="btn-style" (click)="onAddButton()">ADD</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-stats">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th class="text-center">Video</th>
+              <th class="text-center">User Type </th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Action</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data  of tutorialHelpList">
+                <td>
+                  <div class="icon-big text-center icon-warning">
+                    <video width="150px" height="150px" controls>
+                      <source [src]="data.videoLink" type="video/mp4">
+                    </video>
+                  </div>
+                </td>
+                <td class="text-center">{{data.userType}}</td>
+                <td class="text-center">
+                  <button type="button"
+                  [ngClass]="{
+                    'btn-red': data?.status === 'INACTIVE',
+                    'btn-act': data?.status === 'ACTIVE'
+                  }"
+                  (click)="onUpdateStatus(data._id, data.status)"
+                  >{{data.status}} </button>
+                </td>
+                <td class="text-center">
+                  <i (click)="onEdit(data)" class="fa fa-pencil action-icon cursor-pointer mb-4"></i>&nbsp;&nbsp;
+                  <!-- <i (click)="onDelete(data._id)" class="fa fa-trash-o action-icon cursor-pointer mb-4"></i> -->
+              </td>
+              </tr>
+            </tbody>
+            </table>
+           </div>
+      </div>
+    </div>
+  </div>
+</div>
